@@ -50,3 +50,14 @@ SESA Paraná — Licitações | https://www.saude.pr.gov.br/Pagina/Licitacoes | 
 
 # ───── EDUCAÇÃO / CORPORATIVO ─────
 PUCPR | https://www.pucpr.br/licitacoes/ | Educação
+
+# ───── SANEAMENTO E ENERGIA ─────
+Sanepar — Obras e Serviços de Engenharia | https://licitacoes.sanepar.com.br/licitacoesObrasEngenharia.aspx | Saneamento
+Copel — Licitações Abertas | https://www.copel.com/licitacoes/publico/consultarLicitacoesAbertas.jsf | Energia
+
+# ───── SAÚDE PÚBLICA MUNICIPAL ─────
+FEAES Curitiba — Licitações | https://www.feaes.curitiba.pr.gov.br/pregao-eletronico/12-licitacoes.html | Saúde Municipal
+
+# ───── UNIVERSIDADES FEDERAIS ─────
+UFPR — Licitações | https://pra.ufpr.br/licitacoes/ | Educação Federal
+UTFPR — Licitações | https://www.utfpr.edu.br/acesso-a-informacao/licitacoes-e-contratos | Educação Federal
