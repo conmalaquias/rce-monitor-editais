@@ -1,0 +1,45 @@
+# ════════════════════════════════════════════════════════════════
+#  LISTA DE SITES MONITORADOS — RCE Engenharia
+# ════════════════════════════════════════════════════════════════
+#
+#  COMO EDITAR (direto na tela do GitHub):
+#
+#   • Para ADICIONAR um site: escreva uma nova linha no formato:
+#        Nome da Instituição | https://link-da-pagina | Categoria
+#
+#   • Para REMOVER um site: apague a linha inteira (ou coloque um #
+#     no começo dela para desativar sem apagar).
+#
+#   • Para EDITAR: basta alterar o texto da linha.
+#
+#  REGRAS:
+#   • Separe os 3 campos com a barra vertical:  |
+#   • Linhas começando com #  são ignoradas (comentários).
+#   • Linhas em branco são ignoradas.
+#   • A Categoria é livre (Hospital, Sistema S, Educação, etc.).
+#
+#  Formato:   NOME  |  URL  |  CATEGORIA
+# ════════════════════════════════════════════════════════════════
+
+
+# ───── HOSPITAIS — Curitiba e Região Metropolitana ─────
+Hospital Erasto Gaertner | https://erastogaertner.com.br/licitacoes | Hospital
+Santa Casa de Curitiba | https://santacasacuritiba.com.br/sobre-nos/editais/ | Hospital
+Hospital Universitário Evangélico Mackenzie | https://hospital.mackenzie.br/huem/social-e-filantropia/licitacoes/ | Hospital
+Hospital de Clínicas UFPR (EBSERH) | https://www.gov.br/ebserh/pt-br/hospitais-universitarios/regiao-sul/chc-ufpr/acesso-a-informacao/licitacoes-e-contratos | Hospital Universitário
+Hospital Pequeno Príncipe | https://pequenoprincipe.org.br/transparencia/ | Hospital
+
+# ───── HOSPITAIS — Raio de até 500 km ─────
+Santa Casa de Ponta Grossa | https://santacasapg.com/licitacoes/ | Hospital
+Hospital São Vicente de Paulo (Mafra/SC) | https://www.hospitalsvp.com.br/transparencia/ | Hospital
+
+# ───── SISTEMA S — Educação Profissional ─────
+SENAC Paraná | https://www.pr.senac.br/licitacoes/ | Sistema S
+SENAR / FAEP Paraná | https://www.sistemafaep.org.br/licitacoes/ | Sistema S
+SESI / SENAI Paraná (FIEP) | https://www.fiepr.org.br/licitacoes/ | Sistema S
+
+# ───── GOVERNO E SAÚDE PÚBLICA ─────
+SESA Paraná — Licitações | https://www.saude.pr.gov.br/Pagina/Licitacoes | Governo Estadual
+
+# ───── EDUCAÇÃO / CORPORATIVO ─────
+PUCPR | https://www.pucpr.br/licitacoes/ | Educação

@@ -1,0 +1,92 @@
+# ════════════════════════════════════════════════════════════════
+#  PALAVRAS-CHAVE DE OBRA — RCE Engenharia
+# ════════════════════════════════════════════════════════════════
+#
+#  O robô só dispara alerta quando um edital novo contém pelo menos
+#  UMA destas palavras. Isso filtra residência médica, compra de
+#  equipamento, medicamento e outros editais que NÃO interessam.
+#
+#  COMO EDITAR (direto no GitHub):
+#   • Para ADICIONAR um termo: escreva numa nova linha.
+#   • Para REMOVER: apague a linha (ou coloque # na frente).
+#   • Acentos não importam (o robô ignora acentos automaticamente).
+#   • Use a RAIZ da palavra para pegar variações.
+#     Ex.: "reform" pega reforma, reformas, reformar, reformado.
+#          "constru" pega construção, construir, construção civil.
+#
+#  Linhas com #  e linhas em branco são ignoradas.
+# ════════════════════════════════════════════════════════════════
+
+
+# ───── NÚCLEO (alta precisão — quase sempre é obra) ─────
+obra
+reform
+constru
+retrofit
+amplia
+edifica
+empreitada
+revitaliza
+restaura
+demoli
+benfeitoria
+turn key
+turnkey
+expans
+
+# ───── ELEMENTOS CONSTRUTIVOS ─────
+estrutur
+reforço estrutural
+alvenaria
+fundac
+concret
+laje
+paviment
+cobertura
+telhad
+fachada
+impermeabiliza
+esquadria
+drywall
+gesso
+forro
+piso
+revestiment
+acabamento
+
+# ───── INSTALAÇÕES PREDIAIS ─────
+hidraulic
+hidrossanitar
+eletric
+climatiza
+ar-condicionado
+ar condicionado
+spda
+subestac
+grupo gerador
+ppci
+prevenção de incêndio
+combate a incêndio
+hidrante
+sprinkler
+saneament
+
+# ───── ARQUITETURA E PROJETOS ─────
+arquitet
+projeto executivo
+projeto básico
+projeto complementar
+urbaniza
+paisagism
+terraplan
+terraplen
+
+# ───── REQUALIFICAÇÃO E ADEQUAÇÃO ─────
+moderniza
+adequac
+acessibilidade
+manutenção predial
+manutenção civil
+reparo
+pintura
+canteiro
