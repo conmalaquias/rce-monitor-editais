@@ -28,10 +28,17 @@ Santa Casa de Curitiba | https://santacasacuritiba.com.br/sobre-nos/editais/ | H
 Hospital Universitário Evangélico Mackenzie | https://hospital.mackenzie.br/huem/social-e-filantropia/licitacoes/ | Hospital
 Hospital de Clínicas UFPR (EBSERH) | https://www.gov.br/ebserh/pt-br/hospitais-universitarios/regiao-sul/chc-ufpr/acesso-a-informacao/licitacoes-e-contratos | Hospital Universitário
 Hospital Pequeno Príncipe | https://pequenoprincipe.org.br/transparencia/ | Hospital
+HONPAR — Portal de Transparência | https://www.honpar.com.br/o-hospital/portal-da-transparencia | Hospital
+Hospital Universitário Cajuru — Transparência | https://hospitalcajuru.org.br/transparencia/ | Hospital
+Hospital Pequeno Príncipe — Transparência | https://pequenoprincipe.org.br/transparencia/ | Hospital
 
 # ───── HOSPITAIS — Raio de até 500 km ─────
 Santa Casa de Ponta Grossa | https://santacasapg.com/licitacoes/ | Hospital
 Hospital São Vicente de Paulo (Mafra/SC) | https://www.hospitalsvp.com.br/transparencia/ | Hospital
+Cancer Center Guarapuava | https://cancercenterguarapuava.com.br/transparencia/ | Hospital
+Santa Casa de Paranavaí | https://santacasaparanavaí.com.br/licitacoes/ | Hospital
+UOPECCAN Cascavel — Editais | https://www.uopeccan.org.br/editais/ | Hospital
+Hospital São Camilo (União da Vitória) | https://www.hospitalsamcamilo.org.br/licitacoes/ | Hospital
 
 # ───── SISTEMA S — Educação Profissional ─────
 SENAC Paraná | https://www.pr.senac.br/licitacoes/ | Sistema S
