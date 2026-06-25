@@ -38,6 +38,7 @@ from bs4 import BeautifulSoup
 DESTINATARIOS = [
     "conrado.malaquias@rceengenharia.eng.br",
     "nailson@rceengenharia.eng.br",
+    "lauro@rceengenharia.eng.br",
 ]
 
 GMAIL_USER = os.environ.get("GMAIL_USER", "")
