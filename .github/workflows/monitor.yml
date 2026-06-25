@@ -1,0 +1,44 @@
+name: 🔔 RCE Monitor de Editais
+
+on:
+  # 1x por dia, às 08h00 de Brasília.
+  # Brasília é UTC-3, então 08h BRT = 11h UTC.
+  schedule:
+    - cron: "0 11 * * *"
+
+  # Botão para rodar manualmente (testes)
+  workflow_dispatch:
+
+# Necessário para o robô salvar o estado de volta no repositório
+permissions:
+  contents: write
+
+jobs:
+  monitorar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Executar monitoramento
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_PASS: ${{ secrets.GMAIL_PASS }}
+        run: python monitor.py
+
+      - name: Salvar estado atualizado
+        run: |
+          git config user.name "RCE Monitor Bot"
+          git config user.email "monitor@rceengenharia.eng.br"
+          git add estado/estado.json || true
+          git diff --staged --quiet || git commit -m "estado: atualizacao automatica [$(date '+%Y-%m-%d')]"
+          git push || true
