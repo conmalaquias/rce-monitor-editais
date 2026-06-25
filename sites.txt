@@ -28,6 +28,7 @@ Santa Casa de Curitiba | https://santacasacuritiba.com.br/sobre-nos/editais/ | H
 Hospital Universitário Evangélico Mackenzie | https://hospital.mackenzie.br/huem/social-e-filantropia/licitacoes/ | Hospital
 Hospital de Clínicas UFPR (EBSERH) | https://www.gov.br/ebserh/pt-br/hospitais-universitarios/regiao-sul/chc-ufpr/acesso-a-informacao/licitacoes-e-contratos | Hospital Universitário
 Hospital Pequeno Príncipe | https://pequenoprincipe.org.br/transparencia/ | Hospital
+TESTE — Google | https://google.com | Teste
 
 # ───── HOSPITAIS — Raio de até 500 km ─────
 Santa Casa de Ponta Grossa | https://santacasapg.com/licitacoes/ | Hospital
