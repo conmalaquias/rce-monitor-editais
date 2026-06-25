@@ -38,7 +38,6 @@ from bs4 import BeautifulSoup
 DESTINATARIOS = [
     "conrado.malaquias@rceengenharia.eng.br",
     "nailson@rceengenharia.eng.br",
-    "lauro@rceengenharia.eng.br",
 ]
 
 GMAIL_USER = os.environ.get("GMAIL_USER", "")
@@ -233,6 +232,7 @@ def montar_email(novidades):
     for v in novidades:
         site = v["site"]
         linhas = ""
+        url_pagina = site["url"]
         for e in v["editais"]:
             termos = ", ".join(e["termos"])
             linhas += f"""
@@ -240,11 +240,16 @@ def montar_email(novidades):
                 <a href="{e['url']}" style="color:#c8102e; font-weight:bold; font-size:15px; text-decoration:none;">
                     {e['titulo']}
                 </a>
-                <div style="margin-top:6px; font-size:12px; color:#888;">
+                <div style="margin-top:8px; font-size:12px; color:#888;">
                     🔎 Identificado por: <em>{termos}</em>
                 </div>
-                <div style="margin-top:4px; font-size:11px; color:#aaa; word-break:break-all;">
-                    {e['url']}
+                <div style="margin-top:6px; font-size:12px; color:#555;">
+                    📄 <strong>Link do edital:</strong>
+                    <a href="{e['url']}" style="color:#c8102e; word-break:break-all;">{e['url']}</a>
+                </div>
+                <div style="margin-top:4px; font-size:12px; color:#555;">
+                    🌐 <strong>Página de origem:</strong>
+                    <a href="{url_pagina}" style="color:#666; word-break:break-all;">{url_pagina}</a>
                 </div>
             </div>
             """
