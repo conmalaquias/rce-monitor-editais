@@ -19,14 +19,17 @@
     "https://honpar.org.br/wp-content/uploads/2026/05/COTACOES-GRUPO-GERADOR.pdf"
   ],
   "https://hospitalcajuru.org.br/transparencia/": [
-    "https://hospitalcajuru.org.br/institucional/quem-somos/",
-    "https://hospitalcajuru.org.br/institucional/estrutura/"
+    "https://hospitalcajuru.org.br/institucional/estrutura/",
+    "https://hospitalcajuru.org.br/institucional/quem-somos/"
   ],
   "https://santacasapg.com/licitacoes/": [],
   "https://www.hospitalsvp.com.br/transparencia/": [],
   "https://cancercenterguarapuava.com.br/transparencia/": [],
   "https://santacasaparanavaí.com.br/licitacoes/": [],
-  "https://www.uopeccan.org.br/editais/": [],
+  "https://www.uopeccan.org.br/editais/": [
+    "https://www.uopeccan.org.br/hospital/",
+    "https://www.uopeccan.org.br/nossa-estrutura/"
+  ],
   "https://www.hospitalsamcamilo.org.br/licitacoes/": [],
   "https://www.pr.senac.br/licitacoes/": [
     "https://www.pr.senac.br/licitacoes/?cad=1&lic=SENAC/PR/CC/2/2026&obj=CONSULTORIA EM ENGENHARIA MECÂNICA E ELÉTRICA&Doc=CC_02_2026_CONSULTORIA_ENGENHARIA_MECANICA_E_ELETRICA_FINAL.pdf&pa=CC022026&re=0",
