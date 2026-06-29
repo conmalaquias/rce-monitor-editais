@@ -10,7 +10,18 @@
     "https://hospital.mackenzie.br/fileadmin/user_upload/449809_2.pdf",
     "https://hospital.mackenzie.br/fileadmin/user_upload/449809_7.pdf"
   ],
-  "https://www.gov.br/ebserh/pt-br/hospitais-universitarios/regiao-sul/chc-ufpr/acesso-a-informacao/licitacoes-e-contratos": [],
+  "https://www.gov.br/ebserh/pt-br/hospitais-universitarios/regiao-sul/chc-ufpr/acesso-a-informacao/licitacoes-e-contratos": [
+    "https://www.gov.br/ebserh/pt-br/acesso-a-informacao/institucional/legislacao-e-normas/rede-ebserh/estatuto-social_24maio2023-1.pdf/",
+    "https://www.gov.br/hubrasil/pt-br/acesso-a-informacao",
+    "https://www.gov.br/hubrasil/pt-br/acesso-a-informacao/acoes-e-programas",
+    "https://www.gov.br/hubrasil/pt-br/acesso-a-informacao/acoes-e-programas/programas-projetos-acoes-obras-e-atividades",
+    "https://www.gov.br/hubrasil/pt-br/acesso-a-informacao/institucional",
+    "https://www.gov.br/hubrasil/pt-br/acesso-a-informacao/institucional/base-juridica-da-estrutura-organizacional-e-das-competencias",
+    "https://www.gov.br/hubrasil/pt-br/acesso-a-informacao/institucional/estrutura-organizacional",
+    "https://www.gov.br/hubrasil/pt-br/acesso-a-informacao/tratamento-de-dados-pessoais",
+    "https://www.gov.br/hubrasil/pt-br/acesso-a-informacao/tratamento-de-dados-pessoais/legislacao-e-normas",
+    "https://www.gov.br/hubrasil/pt-br/transparencia"
+  ],
   "https://pequenoprincipe.org.br/transparencia/": [],
   "https://www.honpar.com.br/o-hospital/portal-da-transparencia": [
     "https://honpar.org.br/estrutura-fisica/",
@@ -59,6 +70,15 @@
     "https://www.copel.com/site/acessibilidade/?utm_source=home-page&utm_medium=acessibilidade&utm_campaign=header"
   ],
   "https://www.feaes.curitiba.pr.gov.br/pregao-eletronico/12-licitacoes.html": [],
-  "https://pra.ufpr.br/licitacoes/": [],
-  "https://www.utfpr.edu.br/acesso-a-informacao/licitacoes-e-contratos": []
+  "https://pra.ufpr.br/licitacoes/": [
+    "https://proad.ufpr.br/licitacoes/acessibilidade",
+    "https://proad.ufpr.br/licitacoes/noticia/chamamento-publico-coleta-de-materiais-reciclaveis/",
+    "https://proad.ufpr.br/licitacoes/noticia/chamamento-publico-implantacao-de-cobertura-vegetal-no-setor-palotina/",
+    "https://proad.ufpr.br/licitacoes/noticia/treinamento-na-lei-de-licitacoes/"
+  ],
+  "https://www.utfpr.edu.br/acesso-a-informacao/licitacoes-e-contratos": [
+    "https://www.utfpr.edu.br/acesso-a-informacao/licitacoes-e-contratos#estrutura-fisica-e-obras",
+    "https://www.utfpr.edu.br/estrutura",
+    "https://www.utfpr.edu.br/planejamento-e-administracao/planejamento/estrutura-fisica-e-obras"
+  ]
 }
