@@ -43,6 +43,7 @@ Hospital São Camilo (União da Vitória) | https://www.saocamilouvitoria.org.br
 SENAC Paraná | https://www.pr.senac.br/licitacoes/ | Sistema S
 SENAR / FAEP Paraná | https://www.sistemafaep.org.br/licitacoes/ | Sistema S
 SESI / SENAI Paraná (FIEP) | https://www.fiepr.org.br/licitacoes/ | Sistema S
+Sistema FAEP / SENAR-PR — Licitações | https://www.sistemafaep.org.br/licitacoes/ | Sistema S
 
 # ───── GOVERNO E SAÚDE PÚBLICA ─────
 SESA Paraná — Editais | https://www.saude.pr.gov.br/Pagina/Editais | Governo Estadual
