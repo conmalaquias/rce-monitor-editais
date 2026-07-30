@@ -68,7 +68,7 @@ HEADERS = {
         "image/webp,*/*;q=0.8"
     ),
     "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
-    "Accept-Encoding": "gzip, deflate, br",
+    "Accept-Encoding": "gzip, deflate",
     "Connection": "keep-alive",
     "Upgrade-Insecure-Requests": "1",
     "Referer": "https://www.google.com/",
