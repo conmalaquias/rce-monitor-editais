@@ -21,6 +21,7 @@ import os
 import re
 import sys
 import json
+import time
 import smtplib
 import unicodedata
 from datetime import datetime, timezone, timedelta
@@ -29,7 +30,12 @@ from email.mime.text import MIMEText
 from urllib.parse import urljoin, urlparse
 
 import requests
+import urllib3
 from bs4 import BeautifulSoup
+
+# Suprime o aviso "InsecureRequestWarning" que aparece quando usamos
+# verify=False como último recurso para sites com certificado quebrado.
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # ───────────────────────────────────────────────
 #  CONFIGURAÇÕES
@@ -48,14 +54,29 @@ ARQUIVO_PALAVRAS = "palavras-chave.txt"
 ARQUIVO_ESTADO = "estado/estado.json"
 
 TIMEOUT = 25
+TENTATIVAS = 2          # nº de tentativas por site antes de desistir
+ESPERA_ENTRE_TENTATIVAS = 4  # segundos
+
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/122.0.0.0 Safari/537.36"
     ),
-    "Accept-Language": "pt-BR,pt;q=0.9",
+    "Accept": (
+        "text/html,application/xhtml+xml,application/xml;q=0.9,"
+        "image/webp,*/*;q=0.8"
+    ),
+    "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
+    "Referer": "https://www.google.com/",
 }
+
+# Quantidade de falhas seguidas para um site ser sinalizado como
+# "possivelmente quebrado" no relatório (mesmo sem editais novos)
+LIMITE_FALHAS_ALERTA = 3
 
 # Esquemas e domínios que nunca são editais
 ESQUEMAS_IGNORAR = ("mailto:", "tel:", "javascript:", "whatsapp:")
@@ -207,26 +228,82 @@ def extrair_editais(html, base_url, palavras):
 
 
 def baixar(url):
-    """Baixa a página. Devolve o HTML ou None em caso de erro."""
-    try:
-        resp = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
-        resp.raise_for_status()
-        # Deixa o requests detectar a codificação correta
-        resp.encoding = resp.apparent_encoding or resp.encoding
-        return resp.text
-    except Exception as e:
-        print(f"   ⚠️  Falha ao acessar: {e}")
-        return None
+    """
+    Baixa a página. Devolve o HTML ou None em caso de erro.
+
+    Estratégia:
+     - Tenta algumas vezes (TENTATIVAS) com uma pequena espera entre
+       elas — resolve falhas passageiras de rede/timeout.
+     - Se o erro for de certificado SSL (comum em sites públicos com
+       certificado mal configurado, ex: hostname mismatch), tenta de
+       novo SEM verificar o certificado. Isso é aceitável aqui porque
+       só estamos LENDO uma página pública de licitações, sem enviar
+       nenhum dado sensível.
+    """
+    ultimo_erro = None
+
+    for tentativa in range(1, TENTATIVAS + 1):
+        try:
+            resp = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
+            resp.raise_for_status()
+            resp.encoding = resp.apparent_encoding or resp.encoding
+            return resp.text
+
+        except requests.exceptions.SSLError as e:
+            print(f"   ⚠️  Certificado SSL inválido — tentando mesmo assim (site público, somente leitura): {e}")
+            try:
+                resp = requests.get(url, headers=HEADERS, timeout=TIMEOUT, verify=False)
+                resp.raise_for_status()
+                resp.encoding = resp.apparent_encoding or resp.encoding
+                return resp.text
+            except Exception as e2:
+                ultimo_erro = e2
+
+        except Exception as e:
+            ultimo_erro = e
+            if tentativa < TENTATIVAS:
+                print(f"   ↻ Tentativa {tentativa} falhou ({e}). Tentando novamente em {ESPERA_ENTRE_TENTATIVAS}s...")
+                time.sleep(ESPERA_ENTRE_TENTATIVAS)
+
+    print(f"   ⚠️  Falha ao acessar após {TENTATIVAS} tentativa(s): {ultimo_erro}")
+    return None
 
 
 # ───────────────────────────────────────────────
 #  E-MAIL
 # ───────────────────────────────────────────────
 
-def montar_email(novidades):
+def bloco_sites_com_problema(sites_com_problema):
+    """Gera um bloco HTML de aviso para sites falhando há várias execuções."""
+    if not sites_com_problema:
+        return ""
+    itens = ""
+    for s in sites_com_problema:
+        itens += f"""
+        <li style="margin-bottom:6px;">
+            <strong>{s['nome']}</strong> — falhando há {s['falhas']} execuções seguidas
+            (<a href="{s['url']}" style="color:#c8102e;">{s['url']}</a>)
+        </li>
+        """
+    return f"""
+    <div style="margin-top:8px; margin-bottom:24px; padding:16px; background:#fff8e6; border-left:4px solid #e0a800; border-radius:4px;">
+        <p style="margin:0 0 8px 0; font-size:13px; color:#555;">
+            ⚠️ <strong>Atenção:</strong> os sites abaixo não estão sendo monitorados corretamente
+            (erro de acesso persistente). Editais publicados neles podem estar passando despercebidos.
+            Vale checar manualmente ou avisar quem cuida do robô.
+        </p>
+        <ul style="margin:0; padding-left:20px; font-size:13px; color:#555;">
+            {itens}
+        </ul>
+    </div>
+    """
+
+
+def montar_email(novidades, sites_com_problema=None):
     """Monta o corpo HTML do e-mail a partir das novidades agrupadas por site."""
     agora = datetime.now(timezone(timedelta(hours=-3))).strftime("%d/%m/%Y às %H:%M")
     total = sum(len(v["editais"]) for v in novidades)
+    aviso_falhas = bloco_sites_com_problema(sites_com_problema)
 
     blocos = ""
     for v in novidades:
@@ -286,6 +363,8 @@ def montar_email(novidades):
 
                 {blocos}
 
+                {aviso_falhas}
+
                 <div style="margin-top:8px; padding:16px; background:#fff8f8; border-left:4px solid #c8102e; border-radius:4px;">
                     <p style="margin:0; font-size:13px; color:#555;">
                         ⚡ <strong>Ação:</strong> abra cada edital, confirme o objeto e o prazo,
@@ -306,19 +385,17 @@ def montar_email(novidades):
     """
 
 
-def enviar_email(novidades):
+def _enviar(assunto, corpo_html):
+    """Função interna que efetivamente conecta no Gmail e envia o e-mail."""
     if not GMAIL_USER or not GMAIL_PASS:
         print("⚠️  Credenciais de e-mail ausentes (GMAIL_USER / GMAIL_PASS). E-mail não enviado.")
         return
 
-    total = sum(len(v["editais"]) for v in novidades)
-    corpo = montar_email(novidades)
-
     msg = MIMEMultipart("alternative")
-    msg["Subject"] = f"🔔 {total} novo(s) edital(is) de obra — RCE Monitor"
+    msg["Subject"] = assunto
     msg["From"] = f"RCE Monitor <{GMAIL_USER}>"
     msg["To"] = ", ".join(DESTINATARIOS)
-    msg.attach(MIMEText(corpo, "html"))
+    msg.attach(MIMEText(corpo_html, "html"))
 
     try:
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
@@ -327,6 +404,44 @@ def enviar_email(novidades):
         print(f"✅ E-mail enviado para: {', '.join(DESTINATARIOS)}")
     except Exception as e:
         print(f"❌ Erro ao enviar e-mail: {e}")
+
+
+def enviar_email(novidades, sites_com_problema=None):
+    total = sum(len(v["editais"]) for v in novidades)
+    corpo = montar_email(novidades, sites_com_problema)
+    assunto = f"🔔 {total} novo(s) edital(is) de obra — RCE Monitor"
+    _enviar(assunto, corpo)
+
+
+def enviar_alerta_falhas(sites_com_problema):
+    """
+    Envia um e-mail curto e dedicado quando não há editais novos, mas
+    existem sites falhando há várias execuções seguidas — para que
+    isso nunca fique invisível dentro dos logs do GitHub Actions.
+    """
+    agora = datetime.now(timezone(timedelta(hours=-3))).strftime("%d/%m/%Y às %H:%M")
+    aviso = bloco_sites_com_problema(sites_com_problema)
+    corpo = f"""
+    <html><body style="font-family:Arial,Helvetica,sans-serif; background:#f0f0f3; padding:24px; margin:0;">
+        <div style="max-width:720px; margin:0 auto; background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 3px 14px rgba(0,0,0,0.08);">
+            <div style="background:#0f0f14; padding:28px 32px;">
+                <h1 style="color:#fff; margin:0; font-size:21px;">⚠️ Sites do monitor com falha persistente</h1>
+                <p style="color:#c8102e; margin:6px 0 0 0; font-size:13px; letter-spacing:0.5px;">
+                    RCE ENGENHARIA · MONITOR DE LICITAÇÕES · {agora}
+                </p>
+            </div>
+            <div style="padding:28px 32px;">
+                <p style="color:#444; font-size:14px; margin-top:0;">
+                    Nenhum edital novo foi identificado hoje, mas os sites abaixo estão
+                    falhando repetidamente — ou seja, editais publicados neles podem
+                    não estar sendo capturados pelo robô.
+                </p>
+                {aviso}
+            </div>
+        </div>
+    </body></html>
+    """
+    _enviar("⚠️ RCE Monitor — sites com falha persistente", corpo)
 
 
 # ───────────────────────────────────────────────
@@ -341,11 +456,14 @@ def executar():
     sites = ler_sites()
     palavras = ler_palavras()
     estado = carregar_estado()
+    falhas_anteriores = estado.get("_falhas", {})
 
     print(f"📋 {len(sites)} site(s) na lista | {len(palavras)} palavra(s)-chave de obra\n")
 
     novidades = []        # o que vai pro e-mail
     novo_estado = {}
+    novo_falhas = {}
+    sites_com_problema = []   # sites falhando há LIMITE_FALHAS_ALERTA execuções ou mais
 
     for site in sites:
         nome, url = site["nome"], site["url"]
@@ -355,8 +473,16 @@ def executar():
         if html is None:
             # Mantém o estado anterior para não gerar falso alerta
             novo_estado[url] = estado.get(url, [])
+            novo_falhas[url] = falhas_anteriores.get(url, 0) + 1
+            if novo_falhas[url] >= LIMITE_FALHAS_ALERTA:
+                sites_com_problema.append({
+                    "nome": nome, "url": url, "falhas": novo_falhas[url]
+                })
+                print(f"   🛑 Este site falha há {novo_falhas[url]} execuções seguidas — pode estar quebrado.")
             print()
             continue
+
+        novo_falhas[url] = 0
 
         editais = extrair_editais(html, url, palavras)
         urls_atuais = [e["url"] for e in editais]
@@ -385,6 +511,7 @@ def executar():
         novo_estado[url] = sorted(vistos_antes.union(urls_atuais))
         print()
 
+    novo_estado["_falhas"] = novo_falhas
     salvar_estado(novo_estado)
 
     if novidades:
@@ -392,7 +519,12 @@ def executar():
         print(f"{'='*64}")
         print(f"  {total} edital(is) de obra novo(s). Enviando e-mail...")
         print(f"{'='*64}\n")
-        enviar_email(novidades)
+        enviar_email(novidades, sites_com_problema)
+    elif sites_com_problema:
+        print(f"{'='*64}")
+        print(f"  Nenhum edital novo, mas {len(sites_com_problema)} site(s) com falha persistente. Enviando alerta...")
+        print(f"{'='*64}\n")
+        enviar_alerta_falhas(sites_com_problema)
     else:
         print("✅ Nenhum edital de obra novo hoje. Nenhum e-mail enviado.\n")
 
