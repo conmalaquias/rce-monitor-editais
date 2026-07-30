@@ -29,11 +29,14 @@ Hospital Universitário Evangélico Mackenzie | https://hospital.mackenzie.br/hu
 Hospital de Clínicas UFPR (EBSERH) | https://www.gov.br/ebserh/pt-br/hospitais-universitarios/regiao-sul/chc-ufpr/acesso-a-informacao/licitacoes-e-contratos | Hospital Universitário
 Hospital Pequeno Príncipe | https://pequenoprincipe.org.br/licitacoes/ | Hospital
 HONPAR — Portal de Transparência | https://honpar.org.br/portal-da-transparencia/ | Hospital
+HONPAR — Licitações | https://honpar.org.br/licitacoes/ | Hospital
 Hospital Universitário Cajuru — Transparência | https://hospitalcajuru.org.br/transparencia/ | Hospital
 
 # ───── HOSPITAIS — Raio de até 500 km ─────
-Santa Casa de Ponta Grossa | https://santacasapg.com/licitacoes/ | Hospital
-Hospital São Vicente de Paulo (Mafra/SC) | http://www.hsvpmafra.org.br/publicacoes/editais-diversos | Hospital
+Santa Casa de Ponta Grossa — Municipais | https://santacasapg.com/licitacoes-municipais/ | Hospital
+Santa Casa de Ponta Grossa — Estaduais | https://santacasapg.com/licitacoes-estaduais/ | Hospital
+Santa Casa de Ponta Grossa — Federais | https://santacasapg.com/licitacoes-federais/ | Hospital
+Hospital São Vicente de Paulo (Mafra/SC) | https://www.hsvpmafra.org.br/publicacoes/editais-diversos | Hospital
 Hospital São Vicente de Guarapuava (Cancer Center) | https://www.hospitalsaovicente.org.br/editais/ | Hospital
 Santa Casa de Paranavaí | https://santacasadeparanavai.org.br/transparencia-indicadores/ | Hospital
 UOPECCAN Cascavel — Editais | https://www.uopeccan.org.br/editais/ | Hospital
@@ -43,21 +46,23 @@ Hospital São Camilo (União da Vitória) | https://www.saocamilouvitoria.org.br
 SENAC Paraná | https://www.pr.senac.br/licitacoes/ | Sistema S
 SENAR / FAEP Paraná | https://www.sistemafaep.org.br/licitacoes/ | Sistema S
 SESI / SENAI Paraná (FIEP) | https://www.fiepr.org.br/licitacoes/ | Sistema S
-Sistema FAEP / SENAR-PR — Licitações | https://www.sistemafaep.org.br/licitacoes/ | Sistema S
 
 # ───── GOVERNO E SAÚDE PÚBLICA ─────
 SESA Paraná — Editais | https://www.saude.pr.gov.br/Pagina/Editais | Governo Estadual
 
 # ───── EDUCAÇÃO / CORPORATIVO ─────
 PUCPR | https://www.pucpr.br/a-universidade/nucleo-de-licitacoes/ | Educação
-# ⚠️ página real, mas processos listados param em 2019 — considerar checar manualmente https://www.pucpr.br/portal-da-transparencia-pucpr/ como alternativa mais atual
+# ⚠️ confirmado: essa página realmente parou em 2019. A PUCPR migrou licitações para
+# https://sites.pucpr.br/filtros/suprimentos/ — mas essa URL parece carregada via JS/iframe,
+# não consegui confirmar por fora se um scraper simples (requests) consegue ler o conteúdo.
+# Vale testar manualmente rodando o robô com essa URL antes de trocar de vez.
 
 # ───── SANEAMENTO E ENERGIA ─────
 Sanepar — Obras e Serviços de Engenharia | https://licitacoes.sanepar.com.br/licitacoesObrasEngenharia.aspx | Saneamento
 Copel — Licitações Abertas | https://www.copel.com/licitacoes/publico/consultarLicitacoesAbertas.jsf | Energia
 
 # ───── SAÚDE PÚBLICA MUNICIPAL ─────
-FEAES Curitiba — Licitações | https://www.feaes.curitiba.pr.gov.br/pregao-eletronico/12-licitacoes.html | Saúde Municipal
+FEAES Curitiba — Licitações | https://feaes.curitiba.pr.gov.br/pregao-eletronico/12-licitacoes.html | Saúde Municipal
 
 # ───── UNIVERSIDADES FEDERAIS ─────
 UFPR — Licitações | https://pra.ufpr.br/licitacoes/ | Educação Federal
