@@ -78,6 +78,11 @@ HEADERS = {
 # "possivelmente quebrado" no relatório (mesmo sem editais novos)
 LIMITE_FALHAS_ALERTA = 3
 
+# Depois do primeiro alerta, não repete todo dia (isso vira ruído e cansa).
+# Manda de novo só a cada N execuções, como lembrete de que o problema
+# continua ali. Ex.: 7 = manda o alerta inicial, depois relembra 1x por semana.
+REPETIR_ALERTA_A_CADA = 7
+
 # Esquemas e domínios que nunca são editais
 ESQUEMAS_IGNORAR = ("mailto:", "tel:", "javascript:", "whatsapp:")
 DOMINIOS_IGNORAR = (
@@ -474,11 +479,19 @@ def executar():
             # Mantém o estado anterior para não gerar falso alerta
             novo_estado[url] = estado.get(url, [])
             novo_falhas[url] = falhas_anteriores.get(url, 0) + 1
+
             if novo_falhas[url] >= LIMITE_FALHAS_ALERTA:
-                sites_com_problema.append({
-                    "nome": nome, "url": url, "falhas": novo_falhas[url]
-                })
-                print(f"   🛑 Este site falha há {novo_falhas[url]} execuções seguidas — pode estar quebrado.")
+                excedente = novo_falhas[url] - LIMITE_FALHAS_ALERTA
+                # Alerta na hora em que cruza o limite, depois só de novo a
+                # cada REPETIR_ALERTA_A_CADA execuções (evita e-mail repetido todo dia)
+                deve_alertar = (excedente == 0) or (excedente % REPETIR_ALERTA_A_CADA == 0)
+                if deve_alertar:
+                    sites_com_problema.append({
+                        "nome": nome, "url": url, "falhas": novo_falhas[url]
+                    })
+                    print(f"   🛑 Este site falha há {novo_falhas[url]} execuções seguidas — pode estar quebrado.")
+                else:
+                    print(f"   🛑 Falha há {novo_falhas[url]} execuções seguidas (alerta já enviado antes, sem repetir hoje).")
             print()
             continue
 
