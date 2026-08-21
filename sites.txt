@@ -62,12 +62,12 @@ Sanepar — Obras e Serviços de Engenharia | https://licitacoes.sanepar.com.br/
 Copel — Licitações Abertas | https://www.copel.com/licitacoes/publico/consultarLicitacoesAbertas.jsf | Energia
 
 # ───── SAÚDE PÚBLICA MUNICIPAL ─────
-# A FEAES mudou de nome oficialmente para FEAS (Fundação Estatal de Atenção à Saúde,
-# sem o "Especializada") — confirmado pelo site da Câmara Municipal de Curitiba.
-# O domínio antigo (feaes.curitiba.pr.gov.br) está com certificado quebrado e
-# estrutura de URL instável há semanas — provavelmente por estar sendo descontinuado
-# pós-mudança de nome. Trocado para o domínio novo e oficial.
-FEAS Curitiba — Licitações | https://feas.curitiba.pr.gov.br/licitacoes.html | Saúde Municipal
+# FEAS Curitiba — DESATIVADO em 21/08. Mesmo com o domínio novo e correto
+# (feas.curitiba.pr.gov.br, confirmado como sucessor oficial da antiga FEAES),
+# continuou dando problema na prática. Não vale mais tempo tentando adivinhar
+# a causa sem o log exato do erro. Histórico da investigação: conversa "RCE
+# Monitor — sites com falha persistente".
+# FEAS Curitiba — Licitações | https://feas.curitiba.pr.gov.br/licitacoes.html | Saúde Municipal
 
 # ───── UNIVERSIDADES FEDERAIS ─────
 UFPR — Licitações | https://pra.ufpr.br/licitacoes/ | Educação Federal
