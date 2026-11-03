@@ -183,6 +183,8 @@
     "https://ufpr.br/proad/a-proad/",
     "https://ufpr.br/proad/acessibilidade",
     "https://ufpr.br/proad/estrutura-administrativa/",
+    "https://ufpr.br/proad/servicos/",
+    "https://ufpr.br/proad/suporte-e-abertura-de-chamados-sistemas-estruturantes-do-governo-federal/",
     "https://www.funpar.ufpr.br/"
   ],
   "https://www.utfpr.edu.br/acesso-a-informacao/licitacoes-e-contratos": [
@@ -191,10 +193,10 @@
     "https://www.utfpr.edu.br/planejamento-e-administracao/planejamento/estrutura-fisica-e-obras"
   ],
   "_falhas": {
-    "https://erastogaertner.com.br/licitacoes": 12,
+    "https://erastogaertner.com.br/licitacoes": 13,
     "https://santacasacuritiba.com.br/sobre-nos/editais/": 0,
     "https://hospital.mackenzie.br/huem/social-e-filantropia/licitacoes/": 0,
-    "https://www.gov.br/ebserh/pt-br/hospitais-universitarios/regiao-sul/chc-ufpr/acesso-a-informacao/licitacoes-e-contratos": 1,
+    "https://www.gov.br/ebserh/pt-br/hospitais-universitarios/regiao-sul/chc-ufpr/acesso-a-informacao/licitacoes-e-contratos": 0,
     "https://pequenoprincipe.org.br/licitacoes/": 0,
     "https://honpar.org.br/portal-da-transparencia/": 0,
     "https://honpar.org.br/licitacoes/": 0,
@@ -207,9 +209,9 @@
     "https://santacasadeparanavai.org.br/transparencia-indicadores/": 0,
     "https://www.uopeccan.org.br/editais/": 0,
     "https://www.saocamilouvitoria.org.br/institucional/lei-de-acesso-a-informacao-7": 0,
-    "https://www.pr.senac.br/licitacoes/": 95,
+    "https://www.pr.senac.br/licitacoes/": 96,
     "https://www.sistemafaep.org.br/licitacoes/": 0,
-    "https://www.fiepr.org.br/licitacoes/": 95,
+    "https://www.fiepr.org.br/licitacoes/": 96,
     "https://www.saude.pr.gov.br/Pagina/Editais": 0,
     "https://www.pucpr.br/a-universidade/nucleo-de-licitacoes/": 0,
     "https://licitacoes.sanepar.com.br/licitacoesObrasEngenharia.aspx": 0,
